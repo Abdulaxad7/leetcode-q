@@ -2,12 +2,21 @@ package main
 
 import (
 	"fmt"
-	"math"
 )
 
 func main() {
-	fmt.Println(myPow(2, -2))
+	reverseWords("asfdsa")
+
 }
-func myPow(x float64, n int) float64 {
-	return math.Pow(x, float64(n))
+func reverseWords(s string) string {
+	var stri [][]string
+
+	for _, str := range s {
+		if str == ' ' {
+
+		}
+		stri[] = append(stri[], string(str))
+	}
+	fmt.Print(stri)
+	return s
 }

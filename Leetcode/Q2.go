@@ -6,42 +6,43 @@ import (
 )
 
 func main() {
-	var index []int
-	index = []int{-1, 0, 1, 2, -1, -4}
-
-	fmt.Println(threeSum(index))
+	var arr []int
+	arr = []int{
+		-3, -1, 0, 2, 4, 5,
+	}
+	fmt.Println(fourSum(arr, 2))
 }
-
-func threeSum(nums []int) [][]int {
+func fourSum(nums []int, target int) [][]int {
 	sort.Ints(nums)
 	n := len(nums)
-	var result [][]int
+	result := [][]int{}
 
-	for i := 0; i < n-2; i++ {
-
+	for i := 0; i < n-3; i++ {
 		if i > 0 && nums[i] == nums[i-1] {
 			continue
 		}
-
-		left, right := i+1, n-1
-		for left < right {
-			sum := nums[i] + nums[left] + nums[right]
-			if sum == 0 {
-				result = append(result, []int{nums[i], nums[left], nums[right]})
-
-				for left < right && nums[left] == nums[left+1] {
+		for j := i + 1; j < n-2; j++ {
+			if j > i+1 && nums[j] == nums[j-1] {
+				continue
+			}
+			left, right := j+1, n-1
+			for left < right {
+				sum := nums[i] + nums[j] + nums[left] + nums[right]
+				if sum == target {
+					result = append(result, []int{nums[i], nums[j], nums[left], nums[right]})
+					for left < right && nums[left] == nums[left+1] {
+						left++
+					}
+					for left < right && nums[right] == nums[right-1] {
+						right--
+					}
 					left++
-				}
-
-				for left < right && nums[right] == nums[right-1] {
+					right--
+				} else if sum < target {
+					left++
+				} else {
 					right--
 				}
-				left++
-				right--
-			} else if sum < 0 {
-				left++
-			} else {
-				right--
 			}
 		}
 	}

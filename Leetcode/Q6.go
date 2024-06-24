@@ -1,23 +1,13 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"math"
+)
 
 func main() {
-	fmt.Println(searchInsert([]int{1, 2, 4, 5, 6}, 5))
+	fmt.Println(myPow(2, -2))
 }
-
-func searchInsert(nums []int, target int) int {
-	left := 0
-	right := len(nums) - 1
-	for left <= right {
-		midPoint := (left + right) / 2
-		if nums[midPoint] < target {
-			left = midPoint + 1
-		} else if nums[midPoint] > target {
-			right = midPoint - 1
-		} else {
-			return midPoint
-		}
-	}
-	return left
+func myPow(x float64, n int) float64 {
+	return math.Pow(x, float64(n))
 }
